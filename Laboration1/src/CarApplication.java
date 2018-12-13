@@ -5,19 +5,14 @@ import java.util.List;
 public class CarApplication {
     public static void main(String[] args) {
         // Instance of this class
-        CarModel carModel = new CarModel();
-        CarView frame = new CarView("NeedForSpeed");
+        CarModel model = new CarModel();
+        model.addSaab();
+        model.addVolvo();
+        model.addScania();
 
+        CarView frame = new CarView("NeedForSpeed", model);
 
-        carModel.addCar(CarFactory.createSaab95(0, 0));
-        carModel.addCar(CarFactory.createVolvo240(0, 100));
-        carModel.addCar(CarFactory.createScania(0, 200));
-
-        CarController cc = new CarController(frame, carModel);
-
-        carModel.addObserver(frame.drawPanel);
-
-        // Start a new view and send a reference of self
+        CarController cc = new CarController(frame, model);
 
         // Start the timer
         cc.getTimer().start();

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CarModel {
     List<Observer> observers = new ArrayList<>();
@@ -9,6 +10,9 @@ public class CarModel {
     public List<IMovable> getCars() {
         return cars;
     }
+
+    private static final Random ran = new Random();
+
 
     public void addObserver(Observer obs){
         observers.add(obs);
@@ -21,7 +25,25 @@ public class CarModel {
     }
 
     public void addCar(IMovable car) {
-        cars.add(car);
+        if(cars.size() < 8){
+         cars.add(car);}
+    }
+
+    public void addVolvo(){
+        addCar(CarFactory.createVolvo240(0, (cars.size() * 75) % 620));
+    }
+
+    public void addSaab(){
+        addCar(CarFactory.createSaab95(0, (cars.size() * 75) % 620));
+    }
+
+    public void addScania(){
+        addCar(CarFactory.createScania(0, (cars.size() * 75) % 620));
+    }
+
+    public void removeCar(){
+        if(cars.size() > 0){
+            cars.remove(0);}
     }
 
     protected void turboOff() {

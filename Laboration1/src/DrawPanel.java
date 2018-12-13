@@ -7,39 +7,38 @@ import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel implements Observer{
+public class DrawPanel extends JPanel  {
 
     // Just a single image,
     private BufferedImage volvoImage;
     private BufferedImage saabImage;
     private BufferedImage scaniaImage;
     // To keep track of a singel cars position
-    private Point volvoPoint = new Point();
-    private Point saabPoint = new Point();
-    private Point scaniaPoint = new Point();
+
     private CarModel model;
     //gitest
 
-    public DrawPanel(CarModel model){
+    /*
+        public void notified(IMovable car) {
+            moveit(car)        }
+    /*
+        void moveit(IMovable c) {
+            if (c.getClass() == Volvo240.class) {
+                volvoPoint.setLocation(c.getX(), c.getY());
+            } else if (c.getClass() == Saab95.class) {
+                saabPoint.setLocation(c.getX(), c.getY());
+            } else if (c.getClass() == Scania.class) {
+                scaniaPoint.setLocation(c.getX(), c.getY());
+            }
+
+        }
+    */
+    // Initializes the panel and reads the images
+    public DrawPanel(int x, int y, CarModel model) {
+        this(x, y);
         this.model = model;
     }
 
-    public void notified(IMovable car){
-        moveit(car);
-    }
-
-    void moveit(IMovable c){
-        if(c.getClass() == Volvo240.class){
-            volvoPoint.setLocation(c.getX(),c.getY());
-        }else if(c.getClass() == Saab95.class){
-            saabPoint.setLocation(c.getX(),c.getY());
-        }else if(c.getClass() == Scania.class){
-            scaniaPoint.setLocation(c.getX(),c.getY());
-        }
-
-    }
-
-    // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
@@ -55,8 +54,7 @@ public class DrawPanel extends JPanel implements Observer{
             volvoImage = ImageIO.read(new File("src\\pics\\Volvo240.jpg"));
             saabImage = ImageIO.read(new File("src\\pics\\Saab95.jpg"));
             scaniaImage = ImageIO.read(new File("src\\pics\\Scania.jpg"));
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
 
@@ -66,12 +64,19 @@ public class DrawPanel extends JPanel implements Observer{
     // TODO: Change to suit your needs.
     @Override
     protected void paintComponent(Graphics g) {
+
         super.paintComponent(g);
 
-
-        g.drawImage(volvoImage, volvoPoint.x, volvoPoint.y, null); // see javadoc for more in   fo on the parameters
-        g.drawImage(saabImage, saabPoint.x, saabPoint.y, null);
-        g.drawImage(scaniaImage, scaniaPoint.x, scaniaPoint.y, null);
-
+        for (IMovable c : model.getCars()) {
+            BufferedImage image = null;
+            if (c.getClass() == Saab95.class) {
+                image = saabImage;
+            } else if (c.getClass() == Volvo240.class) {
+                image = volvoImage;
+            } else if (c.getClass() == Scania.class) {
+                image = scaniaImage;
+            }
+            g.drawImage(image, (int) c.getX(), (int) c.getY(), null);
+        }
     }
 }

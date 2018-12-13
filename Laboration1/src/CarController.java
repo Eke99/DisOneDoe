@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /*
  * This class represents the Controller part in the MVC pattern.
@@ -81,6 +80,30 @@ public class CarController extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.lowerBed();
+            }
+        });
+        frame.getAddVolvoButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.addVolvo();
+            }
+        });
+        frame.getAddSaabButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.addSaab();
+            }
+        });
+        frame.getAddScaniaButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.addScania();
+            }
+        });
+        frame.getRemoveCarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.removeCar();
             }
         });
 

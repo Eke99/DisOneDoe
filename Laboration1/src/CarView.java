@@ -14,12 +14,14 @@ import java.awt.event.ActionListener;
  **/
 
 public class CarView extends JFrame {
-    private static final int X = 800;
-    private static final int Y = 800;
+    private static final int X = 1200;
+    private static final int Y = 1000;
+
+    private CarModel model;
 
     // The controller member
 
-    protected DrawPanel drawPanel = new DrawPanel(X, Y - 240);
+    protected DrawPanel drawPanel;// = new DrawPanel(X, Y - 440);
 
     private JPanel controlPanel = new JPanel();
 
@@ -38,8 +40,17 @@ public class CarView extends JFrame {
     private JButton startButton = new JButton("Start all cars");
     private JButton stopButton = new JButton("Stop all cars");
 
+    private JButton addVolvoButton = new JButton("Add a Volvo");
+    private JButton addSaabButton = new JButton("Add a Saab");
+    private JButton addScaniaButton = new JButton("Add a Scania");
+
+    private JButton removeCarButton = new JButton("Remove a car");
+
+
     // Constructor
-    public CarView(String framename) {
+    public CarView(String framename, CarModel model) {
+        this.model = model;
+        drawPanel = new DrawPanel(X, Y-440, model);
         initComponents(framename);
     }
 
@@ -80,6 +91,10 @@ public class CarView extends JFrame {
         controlPanel.add(brakeButton, 3);
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerBedButton, 5);
+        controlPanel.add(addVolvoButton, 6);
+        controlPanel.add(addSaabButton, 7);
+        controlPanel.add(addScaniaButton, 8);
+        controlPanel.add(removeCarButton, 9);
         controlPanel.setPreferredSize(new Dimension((X / 2) + 4, 200));
         this.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
@@ -112,6 +127,22 @@ public class CarView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    public JButton getAddVolvoButton() {
+        return addVolvoButton;
+    }
+
+    public JButton getAddSaabButton() {
+        return addSaabButton;
+    }
+
+    public JButton getAddScaniaButton() {
+        return addScaniaButton;
+    }
+
+    public JButton getRemoveCarButton() {
+        return removeCarButton;
+    }
+
     public JButton getStartButton() {
         return startButton;
     }
@@ -120,28 +151,8 @@ public class CarView extends JFrame {
         return stopButton;
     }
 
-    public DrawPanel getDrawPanel() {
-        return drawPanel;
-    }
-
-    public JPanel getControlPanel() {
-        return controlPanel;
-    }
-
-    public JPanel getGasPanel() {
-        return gasPanel;
-    }
-
-    public JSpinner getGasSpinner() {
-        return gasSpinner;
-    }
-
     public int getGasAmount() {
         return gasAmount;
-    }
-
-    public JLabel getGasLabel() {
-        return gasLabel;
     }
 
     public JButton getGasButton() {
