@@ -25,4 +25,14 @@ public interface IMovable {
     void gas(double amount);
 
     void brake(double amount);
+
+    double getX();
+
+    double getY();
+
+    void startEngine();
+
+    void stopEngine();
+
+    void invertDirection();
 }

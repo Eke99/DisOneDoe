@@ -24,11 +24,11 @@ public class DrawPanel extends JPanel implements Observer{
         this.model = model;
     }
 
-    public void notified(Car car){
+    public void notified(IMovable car){
         moveit(car);
     }
 
-    void moveit(Car c){
+    void moveit(IMovable c){
         if(c.getClass() == Volvo240.class){
             volvoPoint.setLocation(c.getX(),c.getY());
         }else if(c.getClass() == Saab95.class){

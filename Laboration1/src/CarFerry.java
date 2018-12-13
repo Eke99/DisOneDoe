@@ -140,5 +140,30 @@ public class CarFerry implements IMovable, ILoadable {
         parent.brake(amount);
     }
 
+    @Override
+    public double getX() {
+        return parent.getX();
+    }
+
+    @Override
+    public double getY() {
+        return parent.getY();
+    }
+
+    @Override
+    public void startEngine() {
+        parent.startEngine();
+    }
+
+    @Override
+    public void stopEngine() {
+        parent.stopEngine();
+    }
+
+    @Override
+    public void invertDirection() {
+        parent.invertDirection();
+    }
+
 
 }

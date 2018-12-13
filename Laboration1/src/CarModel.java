@@ -4,9 +4,9 @@ import java.util.List;
 public class CarModel {
     List<Observer> observers = new ArrayList<>();
 
-    List<Car> cars = new ArrayList<>();
+    List<IMovable> cars = new ArrayList<>();
 
-    public List<Car> getCars() {
+    public List<IMovable> getCars() {
         return cars;
     }
 
@@ -14,18 +14,18 @@ public class CarModel {
         observers.add(obs);
     }
 
-    private void notifyObservers(Car car){
+    private void notifyObservers(IMovable car){
         for(Observer o : observers){
             o.notified(car);
         }
     }
 
-    public void addCar(Car car) {
+    public void addCar(IMovable car) {
         cars.add(car);
     }
 
     protected void turboOff() {
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             if (car.getClass() == Saab95.class) {
                 Saab95 saab95 = (Saab95) car;
                 saab95.setTurboOff();
@@ -34,7 +34,7 @@ public class CarModel {
     }
 
     protected void turboOn() {
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             if (car.getClass() == Saab95.class) {
                 Saab95 saab95 = (Saab95) car;
                 saab95.setTurboOn();
@@ -43,7 +43,7 @@ public class CarModel {
     }
 
     protected void liftBed() {
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             if (car.getClass() == Scania.class) {
                 Scania s = (Scania) car;
                 s.extendFlak();
@@ -52,7 +52,7 @@ public class CarModel {
     }
 
     protected void lowerBed() {
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             if (car.getClass() == Scania.class) {
                 Scania s = (Scania) car;
                 s.retractFlak();
@@ -61,13 +61,13 @@ public class CarModel {
     }
 
     protected void start() {
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             car.startEngine();
         }
     }
 
     protected void stop() {
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             car.stopEngine();
         }
     }
@@ -75,26 +75,26 @@ public class CarModel {
     // Calls the gas method for each car once
     protected void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             car.gas(gas);
         }
     }
 
     protected void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             car.brake(brake);
         }
     }
 
-    protected void intersect(Car car, double width, double height) {
+    protected void intersect(IMovable car, double width, double height) {
         if (car.getX() + 117 > width || car.getX() < 0
                 || car.getY() > height || car.getY() < 0) {
             car.invertDirection();
         }
     }
     protected void moveAll(double width, double height) {
-        for (Car car : cars) {
+        for (IMovable car : cars) {
             intersect(car, width, height);
             car.move();
             notifyObservers(car);

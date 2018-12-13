@@ -47,10 +47,9 @@ public abstract class Truck extends Car {
      * Starts the engine if the flak is retracted.
      */
     public void startEngine() {
-        if (!isFlakExtended()) {
+        if (!isFlakExtended() && !isEngineOn()) {
             setCurrentSpeed(0.1);
             setEngineOn(true);
         }
-
     }
 }
