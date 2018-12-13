@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Truck extends Car {
+public abstract class Truck extends Car {
 
     private boolean flakExtended;
 

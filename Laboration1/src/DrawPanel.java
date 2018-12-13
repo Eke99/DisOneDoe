@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -24,9 +23,9 @@ public class DrawPanel extends JPanel implements Observer{
     public DrawPanel(CarModel model){
         this.model = model;
     }
-    public void notified(){
 
-
+    public void notified(Car car){
+        moveit(car);
     }
 
     void moveit(Car c){

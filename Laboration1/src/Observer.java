@@ -1,3 +1,5 @@
 public interface Observer {
-    void notified();
+
+    void notified(Car car);
+
 }

@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
  * an abstract class of of cars. Contains necessary and common data for cars.
  */
 
-public class Car implements IMovable {
+public abstract class Car implements IMovable {
     //variables
     private Color color;
     private double enginePower;
@@ -24,11 +24,8 @@ public class Car implements IMovable {
      *
      * @return speedFactor
      */
-    public double speedFactor() {
-        return enginePower * 0.01;
-    }
-
-    // direction is an enum that determines what values shoud go into x,y
+    public abstract double speedFactor();
+    // direction is an enum that determines what values should go into x,y
     public enum Direction {
         NORTH, WEST, SOUTH, EAST
     }
@@ -157,7 +154,7 @@ public class Car implements IMovable {
      *
      * @param amount
      */
-    public void incrementSpeed(double amount) {
+    private void incrementSpeed(double amount) {
         if (engineOn) {
             currentSpeed = getCurrentSpeed() + speedFactor() * amount;
             if (currentSpeed > enginePower) {

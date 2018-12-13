@@ -107,6 +107,11 @@ public class CarTransport extends Truck implements ILoadable{
     }
 
 
+    @Override
+    public double speedFactor() {
+        return getEnginePower() * 0.01;
+    }
+
     /**
      * In addition to updating position, it also moves all cars which are loaded.
      */

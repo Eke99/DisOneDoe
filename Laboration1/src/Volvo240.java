@@ -17,7 +17,6 @@ public class Volvo240 extends Car {
         this(Color.BLUE, 10, 4, "Volvo240", Direction.EAST, x, y);
     }
 
-
     /*
      * @return The cars speedFactor, how fast it accelerates
      */
